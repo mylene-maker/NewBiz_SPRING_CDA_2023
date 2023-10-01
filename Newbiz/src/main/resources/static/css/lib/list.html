@@ -1,0 +1,63 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <title>Plages de Mayotte</title>
+</head>
+<body>
+
+<h1 class="mb-5">Les plages de Mayotte</h1>
+
+<div class="alert alert-dismissible alert-warning " th:if="${plages.getTotalElements() == 0}">
+    <p class="mb-0"> Aucune plage pour le moment !</p>
+</div>
+
+<a th:href="@{/plage/add}" type="button" class="btn btn-outline-success mb-5">Ajouter une plage</a>
+
+<table class="table table-hover">
+
+    <tbody>
+
+    <tr th:each="plage : ${plages.content}" class="border-bottom p-3">
+        <td th:text="${plage.getNom().toUpperCase()}" class="m"></td>
+        <td><img width="200px" th:src="${plage.getImage()}"/></td>
+        <td>
+
+            <a type="button" class="btn btn-dark" th:href="@{/plage/list/{plage}(plage=${plage.id})}">Voir en detail</a>
+            <a type="button" class="btn btn-dark" th:href="@{/plage/list/edit/{plage}(plage=${plage.id})}">Modifier</a>
+            <a type="button" class="btn btn-danger" th:href="@{/plage/list/delete/{plage}(plage=${plage.id})}">Supprimer</a>
+
+        </td>
+    </tr>
+
+    </tbody>
+</table>
+
+<div>
+    <ul class="pagination">
+        <li class="page-item ">
+            <a class="page-link" th:if="${plages.hasPrevious()}" th:href="@{/plage/list?page=__${plages.getNumber()}__}">&laquo;</a>
+        </li>
+
+        <th:block th:each="i: ${#numbers.sequence(1, plages.getTotalPages())}">
+
+            <li class="page-item active">
+                <a class="page-link" th:if="${i!=plages.getNumber()}" th:text="${i}" th:href="@{/plage/list?page=__${i}__}"></a>
+            </li>
+        </th:block>
+
+        <li class="page-item">
+            <a class="page-link" th:if="${plages.hasNext()}" th:href="@{/plage/list?page=__${plages.getNumber()+2}__}">&raquo;</a>
+        </li>
+    </ul>
+</div>
+
+<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Deconnection</title>
+</head>
+<body>
+<h1>Etes vous sur de vouloir vous deconnecter ?</h1>
+<form method="post" th:action="@{/logout-processing}">
+  <input type="submit" value="OUI">
+</form>
+</body>
+</html>

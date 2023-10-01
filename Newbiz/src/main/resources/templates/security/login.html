@@ -1,0 +1,75 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link th:href="@{/css/lib/bootstrap.css}" rel="stylesheet"/>
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+    <title>Page de Connexion</title>
+</head>
+<body>
+
+<div th:insert="parts/header :: nav"></div>
+
+<div class="container vh-100">
+<h1 class="mb-5 mt-5"> Connectez-vous avec vos identifiants </h1>
+
+<div th:if="${param.error}">
+    Les identifiants sont inconrect !
+</div>
+
+<div th:if="${param.logout}">
+    Vous êtes deconnecté !
+</div>
+
+<!--<form method="post" th:action="@{/login}">-->
+<!--    <div class="form-group col-lg-4 col-md-8 col-sm-8">-->
+<!--        <label>Non utilisateur</label>-->
+<!--        <input type="text" name="username">-->
+<!--    </div>-->
+<!--    <div class="form-group col-lg-4 col-md-8 col-sm-8">-->
+<!--        <label>Mot de passe</label>-->
+<!--        <input type="password" name="password">-->
+<!--    </div>-->
+
+<!--    <input class="btn btn-primary mt-3" type="submit" value="Valider">-->
+<!--</form>-->
+
+
+
+    <form method="post" th:action="@{/login}">
+        <fieldset>
+
+            <div class="form-group row">
+
+                <label for="username" class="form-label mt-4">Nom utilisateur</label>
+
+                <input type="username" class="form-control" name="username" id="username" placeholder="username" autocomplete="off">
+
+
+            </div>
+
+            <div class="form-group">
+                <label for="password" class="form-label mt-4">Mot de passe</label>
+                <input type="password" class="form-control" name="password" id="password" placeholder="Password" autocomplete="off">
+            </div>
+            <button type="submit" class="btn btn-primary">Se connecter</button>
+        </fieldset>
+    </form>
+
+
+
+
+
+
+<div th:insert="parts/footer :: footer"></div>
+</div>
+
+
+
+<script type="text/javascript" th:src="@{/js/lib/bootstrap.bundle.js}"/>
+<script type="text/javascript" th:src="@{/js/lib/bootstrap.js}"/>
+</body>
+</html>
